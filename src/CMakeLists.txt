@@ -1,4 +1,4 @@
-project(payroll)
+project(payroll_library)
 
 
 set(HEADER_FILES Payroll.h)
