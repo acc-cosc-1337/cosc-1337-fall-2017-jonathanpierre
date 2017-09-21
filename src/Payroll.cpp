@@ -88,7 +88,7 @@ double getNetPay(double grossPay, double fedIncomeTax, double ficaSSN, double fi
 	return grossPay - fedIncomeTax - ficaSSN - ficaMED;
 }
 
-stringstream getStream(bool isHourlyEmployee, string name, int hours, int overtimeHours,
+/*stringstream getStream(bool isHourlyEmployee, string name, int hours, int overtimeHours,
 	double rate, double overtimeRate, double regularPay,
 	double overtimePay, double grossPay, double ficaSSN, double ficaMED, double fedIncomeTax, double netPay)
 {
@@ -110,7 +110,7 @@ stringstream getStream(bool isHourlyEmployee, string name, int hours, int overti
 		<< endl;
 	return ss;
 }
-
+*/
 void printPayroll()
 {
 	cout << fixed << setprecision(2)
