@@ -86,7 +86,7 @@ int main()
 		ficaSSN = getficasSSN(grossPay, SSTAXRATE);
 		ficaMED = getficaMED(grossPay, MEDICARETAXRATE);
 		netPay = getNetPay(grossPay, fedIncomeTax, ficaSSN, ficaMED);
-
+		/*
 		if (i == 0)
 		{
 			employeeOneStream = getStream(isHourlyEmployee, name, hours, overtimeHours, rate, overtimeRate, regularPay,
@@ -111,7 +111,7 @@ int main()
 	cout << employeeOneStream.str();
 	cout << employeeTwoStream.str();
 	cout << employeeThreeStream.str();
-
+*/
 	system("pause");
 	return 0;
 }
