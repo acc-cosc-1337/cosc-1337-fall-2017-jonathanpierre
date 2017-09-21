@@ -18,10 +18,11 @@ double getficasSSN(double grossPay, double SSTAXRATE);
 double getficaMED(double grossPay, double MEDICARETAXRATE);
 double getNetPay(double grossPay, double fedIncomeTax, double ficaSSN, double ficaMED);
 
-stringstream getStream(bool isHourlyEmployee, string name, int hours, int overtimeHours,
+/*stringstream getStream(bool isHourlyEmployee, string name, int hours, int overtimeHours,
 	double rate, double overtimeRate, double regularPay,
 	double overtimePay, double grossPay, double ficaSSN, double ficaMED, double fedIncomeTax, double netPay);
 void printPayroll();
+*/
 #endif // PAYROLL_H_INCLUDED
 
 
