@@ -102,9 +102,9 @@ int main()
 			employeeThreeStream = getStream(isHourlyEmployee, name, hours, overtimeHours, rate, overtimeRate, regularPay,
 				overtimePay, grossPay, ficaSSN, ficaMED, fedIncomeTax, netPay);
 		}
-
+		*/
 	}
-	// end of employee loop
+/*	 end of employee loop
 
 	printPayroll();
 
