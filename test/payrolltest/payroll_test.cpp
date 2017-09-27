@@ -9,11 +9,11 @@ TEST(payrollTest, test_overtimeHours_returns_correct){
  }
 
 TEST(payrollTest2, test_GetfIT_returns_positive){
-    EXPECT_EQ(15, getfIT(100));
+    EXPECT_EQ(15, getfIT(100, .15));
 }
 
 TEST(payrollTest2, test_GetFIT_returns_negative){
-    EXPECT_EQ(-15, getfIT(-100));
+    EXPECT_EQ(-15, getfIT(-100, .15));
 }
 
 TEST(payrollTest2, test_GetOvertimeStatus_for_overtime_true){
