@@ -1,117 +1,121 @@
+#include "stdafx.h"
 #include "Payroll.h"
 #include <iostream>
 #include <iomanip>
 #include <string>
-#include <sstream>
+
 using namespace std;
 
 int main()
 {
-	stringstream	employeeOneStream, employeeTwoStream, employeeThreeStream;
-	string			name;
-	int				menuChoice, hours, overtimeHours, regularHours;
-	double			rate, overtimeRate, regularPay, overtimePay = 0, grossPay,
-		salary, ficaSSN, ficaMED, fedIncomeTax, netPay;
-	const double	OTMULTIPLIER = 1.5,
-		FITTAXRATE = .15,
-		SSTAXRATE = .062,
-		MEDICARETAXRATE = .0145;
-	bool			isHourlyEmployee, overtime;
-	enum { hourlyEmployee = 1, salaryEmployee = 2 };
-
+	string		name[3];
+	int		menuChoice;
+	int		hours[3];
+	int		overtimeHours[3];
+	int		regularHours[3];
+	double		rate[3];
+	double		overtimeRate[3];
+	double		regularPay[3];
+	double		overtimePay[3];
+	double		grossPay[3];
+	double		salary;
+	double		ficaSSN[3];
+	double		ficaMED[3];
+	double		fedIncomeTax[3];
+	double		netPay[3];
+	const double	OTMULTIPLIER = 1.5;
+	const double	FITTAXRATE = .15;
+	const double	SSTAXRATE = .062;
+	const double	MEDICARETAXRATE = .0145;
+	bool		isHourlyEmployee[3];
+	bool		overtime;
+	
 	cout << "Payroll Calculation Program." << endl;
 
 	for (int i = 0; i < 3; i++)
 	{
-		// initialize variables to 0
-		hours = 0, overtimeHours = 0, rate = 0, overtimeRate = 0, regularPay = 0, overtimePay = 0, grossPay = 0, salary = 0;
+
+		hours[0] = 0;
+		regularHours[i] = 0;
+		overtimeHours[i] = 0;
+		overtimeRate[i] = 0;
+		rate[i] = 0;
+		regularPay[i] = 0;
+		overtimePay[i] = 0;
+		grossPay[i] = 0;
+		salary = 0;
+		enum { hourlyEmployee = 1, salaryEmployee = 2 };
 
 		cout << "Employee name: ";
-		cin >> name;
+		cin >> name[i];
 
-		cout << "Press 1 - hourly" << endl;
-		cout << "Press 2 - salary" << endl;
+		cout << "Press 1(hourly) 2(Salary): " << endl;
 		cin >> menuChoice;
 
 		menuChoice = validateMenuChoice(menuChoice);
-
+		
 		switch (menuChoice)
 		{
 		case hourlyEmployee:
-			isHourlyEmployee = true;
+			isHourlyEmployee[i] = true;
+			overtime = false;
 
 			cout << "Enter hours worked: ";
-			cin >> hours;
+			cin >> hours[i];
 
-			hours = validateHours(hours);
+			hours[i] = validateHours(hours[i]);
 
 			cout << "Enter hourly pay rate: ";
-			cin >> rate;
+			cin >> rate[i];
 
-			rate = validateRate(rate);
+			rate[i] = validateRate(rate[i]);
 
-			overtime = getOvertimeStatus(hours);
+			overtime = getOvertimeStatus(hours[i]);
+
 
 			if (overtime)
 			{
-				overtimeHours = getOvertimeHours(hours);
-				regularHours = getRegularHours(hours, overtimeHours);
-				regularPay = regularHours * rate;
-				overtimeRate = rate * OTMULTIPLIER;
-				overtimePay = overtimeHours * overtimeRate;
-				grossPay = regularPay + overtimePay;
+				overtimeHours[i] = getOvertimeHours(hours[i]);
+				regularHours[i] = getRegularHours(hours[i], overtimeHours[i]);
+				regularPay[i] = regularHours[i] * rate[i];
+				overtimeRate[i] = rate[i] * OTMULTIPLIER;
+				overtimePay[i] = overtimeHours[i] * overtimeRate[i];
+				grossPay[i] = regularPay[i] + overtimePay[i];
 			}
 			else
 			{
-				regularPay = grossPay = hours * rate;
+				overtime = false;
+				regularPay[i] = grossPay[i] = hours[i] * rate[i];
 			}
 			break;
 
 		case salaryEmployee:
-			isHourlyEmployee = false;
+			isHourlyEmployee[i] = false;
 			overtime = false;
 
 			cout << "Enter gross salary: ";
 			cin >> salary;
 
 			salary = validateSalary(salary);
-			grossPay = regularPay = salary / 26;
+			regularPay[i] = grossPay[i] = salary / 26;
 			break;
 
 		default: cout << "bad input";
 		}
 		//end switch
 
-		fedIncomeTax = getfIT(grossPay, FITTAXRATE);
-		ficaSSN = getficasSSN(grossPay, SSTAXRATE);
-		ficaMED = getficaMED(grossPay, MEDICARETAXRATE);
-		netPay = getNetPay(grossPay, fedIncomeTax, ficaSSN, ficaMED);
-		/*
-		if (i == 0)
-		{
-			employeeOneStream = getStream(isHourlyEmployee, name, hours, overtimeHours, rate, overtimeRate, regularPay,
-				overtimePay, grossPay, ficaSSN, ficaMED, fedIncomeTax, netPay);
-		}
-		if (i == 1)
-		{
-			employeeTwoStream = getStream(isHourlyEmployee, name, hours, overtimeHours, rate, overtimeRate, regularPay,
-				overtimePay, grossPay, ficaSSN, ficaMED, fedIncomeTax, netPay);
-		}
-		if (i == 2)
-		{
-			employeeThreeStream = getStream(isHourlyEmployee, name, hours, overtimeHours, rate, overtimeRate, regularPay,
-				overtimePay, grossPay, ficaSSN, ficaMED, fedIncomeTax, netPay);
-		}
-		*/
+		fedIncomeTax[i] = getfIT(grossPay[i], FITTAXRATE);
+		ficaSSN[i] = getficasSSN(grossPay[i], SSTAXRATE);
+		ficaMED[i] = getficaMED(grossPay[i], MEDICARETAXRATE);
+		netPay[i] = getNetPay(grossPay[i], fedIncomeTax[i], ficaSSN[i], ficaMED[i]);
+
 	}
-/*	 end of employee loop
+	// end of employee loop
 
-	printPayroll();
 
-	cout << employeeOneStream.str();
-	cout << employeeTwoStream.str();
-	cout << employeeThreeStream.str();
-*/
+	printPayroll(isHourlyEmployee, name, hours, overtimeHours,
+		rate, overtimeRate, regularPay, overtimePay, grossPay, ficaSSN, ficaMED, fedIncomeTax, netPay);
+
 	system("pause");
 	return 0;
 }
