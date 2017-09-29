@@ -1,8 +1,6 @@
 #ifndef _PAYROLL_H
 #define _PAYROLL_H
-
-#include <string>
-#include <sstream>
+#include <string> //needed for (parameter data type: string) for printPayroll
 using namespace std;
 
 int validateMenuChoice(int menuChoice);
@@ -18,12 +16,10 @@ double getficasSSN(double grossPay, double SSTAXRATE);
 double getficaMED(double grossPay, double MEDICARETAXRATE);
 double getNetPay(double grossPay, double fedIncomeTax, double ficaSSN, double ficaMED);
 
-/*stringstream getStream(bool isHourlyEmployee, string name, int hours, int overtimeHours,
-	double rate, double overtimeRate, double regularPay,
-	double overtimePay, double grossPay, double ficaSSN, double ficaMED, double fedIncomeTax, double netPay);
-void printPayroll();
-*/
-#endif // PAYROLL_H_INCLUDED
+void printPayroll(bool isHourlyEmployee[], string name[], int hours[], int overtimeHours[],
+	double rate[], double overtimeRate[], double regularPay[],
+	double overtimePay[], double grossPay[], double ficaSSN[], double ficaMED[], double fedIncomeTax[], double netPay[]);
 
+#endif // PAYROLL_H_INCLUDED
 
 
