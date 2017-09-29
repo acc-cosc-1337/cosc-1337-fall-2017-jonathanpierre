@@ -1,10 +1,8 @@
 #include "Payroll.h"
 #include <math.h>
-
 #include <iostream>
 #include <iomanip>
 #include <string>
-#include <sstream>
 using namespace std;
 
 int validateMenuChoice(int menuChoice)
@@ -88,31 +86,11 @@ double getNetPay(double grossPay, double fedIncomeTax, double ficaSSN, double fi
 	return grossPay - fedIncomeTax - ficaSSN - ficaMED;
 }
 
-/*stringstream getStream(bool isHourlyEmployee, string name, int hours, int overtimeHours,
-	double rate, double overtimeRate, double regularPay,
-	double overtimePay, double grossPay, double ficaSSN, double ficaMED, double fedIncomeTax, double netPay)
+void printPayroll(bool isHourlyEmployee[], string name[], int hours[], int overtimeHours[],
+	double rate[], double overtimeRate[], double regularPay[],
+	double overtimePay[], double grossPay[], double ficaSSN[], double ficaMED[], double fedIncomeTax[], double netPay[])
 {
-	stringstream ss;
 
-	ss << setw(10) << name;
-	(isHourlyEmployee) ? ss << setw(7) << hours : ss << setw(7) << " ";
-	(isHourlyEmployee) ? ss << setw(9) << overtimeHours : ss << setw(9) << " ";
-	(isHourlyEmployee) ? ss << setw(7) << rate : ss << setw(7) << " ";
-	(isHourlyEmployee) ? ss << setw(9) << overtimeRate : ss << setw(9) << " ";
-	ss << setw(12) << regularPay;
-	(isHourlyEmployee) ? ss << setw(9) << overtimePay : ss << setw(9) << " ";
-
-	ss << setw(10) << grossPay
-		<< setw(10) << ficaSSN
-		<< setw(10) << ficaMED
-		<< setw(8) << fedIncomeTax
-		<< setw(9) << netPay
-		<< endl;
-	return ss;
-}
-*/
-void printPayroll()
-{
 	cout << fixed << setprecision(2)
 		<< left << setw(10) << "Name"
 		<< setw(7) << "Hours"
@@ -126,6 +104,23 @@ void printPayroll()
 		<< setw(10) << "FICA Med"
 		<< setw(8) << "FIT"
 		<< setw(9) << "Net Pay" << endl;
+
+	for (int e = 0; e < 3; e++)
+	{
+		cout << setw(10) << name[e];
+
+		(isHourlyEmployee[e]) ? cout << setw(7) << hours[e] : cout << setw(7) << " ";
+		(isHourlyEmployee[e]) ? cout << setw(9) << overtimeHours[e] : cout << setw(9) << " ";
+		(isHourlyEmployee[e]) ? cout << setw(7) << rate[e] : cout << setw(7) << " ";
+		(isHourlyEmployee[e]) ? cout << setw(9) << overtimeRate[e] : cout << setw(9) << " ";
+		cout << setw(12) << regularPay[e];
+		(isHourlyEmployee[e]) ? cout << setw(9) << overtimePay[e] : cout << setw(9) << " ";
+
+		cout << setw(10) << grossPay[e]
+			<< setw(10) << ficaSSN[e]
+			<< setw(10) << ficaMED[e]
+			<< setw(8) << fedIncomeTax[e]
+			<< setw(9) << netPay[e]
+			<< endl;
+	}
 }
-
-
